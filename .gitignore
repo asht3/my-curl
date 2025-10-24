@@ -1,0 +1,5 @@
+# Object files and directory
+obj/
+
+# Executable
+my_curl
