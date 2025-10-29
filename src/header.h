@@ -19,10 +19,11 @@ typedef struct {
 
 // url_parser.c
 int parse_url(const char *url, url_t *parsed);
-void get_host(const char *url, url_t *parsed, const char *path_start);
-void get_port(const char *url, url_t *parsed, const char *path_start, const char port_start);
-void get_path(const char *url, url_t *parsed, const char *query_start);
-void get_query_and_fragments(const char *url, url_t *parsed, const char *query_start, const char *fragment_start);
+void get_host(const char *url, url_t *parsed);
+void get_port(url_t *parsed, const char *current_pos);
+void get_path(const char *url, url_t *parsed);
+void get_query(const char *url, url_t *parsed);
+void get_fragment(const char *url, url_t *parsed);
 
 unsigned short my_htons(unsigned short hostshort);
 uint32_t my_inet_addr(const char *ip_str);
