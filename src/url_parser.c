@@ -2,11 +2,11 @@
 
 int parse_url(const char *url, url_t *parsed) {
     // Find the scheme separator
-    char* scheme_end = strstr(url, "://"); // TODO: replace strstr with own implementation
+    char* scheme_end = my_strstr(url, "://");
     // char scheme[10] = "http";
 
     if (scheme_end) {
-        // strncpy(scheme, url, scheme_end - url); // TODO: replace with own implementation
+        // my_strncpy(scheme, url, scheme_end - url);
         // scheme[scheme_end - url] = '\0';
         url += (scheme_end - url) + 3;
     }
@@ -17,37 +17,37 @@ int parse_url(const char *url, url_t *parsed) {
     get_host(current_pos, parsed);
     
     // Update current position after host
-    current_pos += strlen(parsed->host);
+    current_pos += my_strlen(parsed->host);
     
     // Parse port
     if (*current_pos == ':') {
         get_port(parsed, current_pos);
-        current_pos += 1 + strlen(parsed->port); // : + port
+        current_pos += 1 + my_strlen(parsed->port); // : + port
     } else {
-        strcpy(parsed->port, "80");
+        my_strcpy(parsed->port, "80");
     }
     
     // Parse path
     if (*current_pos == '/') {
         get_path(current_pos, parsed);
-        current_pos += strlen(parsed->path);
+        current_pos += my_strlen(parsed->path);
     } else {
-        strcpy(parsed->path, "/");
+        my_strcpy(parsed->path, "/");
     }
     
     // Parse query
     if (*current_pos == '?') {
         get_query(current_pos, parsed);
-        current_pos += 1 + strlen(parsed->query); // ? + query
+        current_pos += 1 + my_strlen(parsed->query); // ? + query
     } else {
-        strcpy(parsed->query, "");
+        my_strcpy(parsed->query, "");
     }
     
     // Parse fragment
     if (*current_pos == '#') {
         get_fragment(current_pos, parsed);
     } else {
-        strcpy(parsed->fragment, "");
+        my_strcpy(parsed->fragment, "");
     }
 
     // DEBUG
@@ -68,10 +68,10 @@ void get_host(const char *url, url_t *parsed) {
     
     size_t host_len = ptr - url;
     if (host_len > 0 && host_len < sizeof(parsed->host)) {
-        strncpy(parsed->host, url, host_len);
+        my_strncpy(parsed->host, url, host_len);
         parsed->host[host_len] = '\0';
     } else {
-        strcpy(parsed->host, "");
+        my_strcpy(parsed->host, "");
     }
 }
 
@@ -85,10 +85,10 @@ void get_port(url_t *parsed, const char *port_start) {
     
     size_t port_len = ptr - port_begin;
     if (port_len > 0 && port_len < sizeof(parsed->port)) {
-        strncpy(parsed->port, port_begin, port_len);
+        my_strncpy(parsed->port, port_begin, port_len);
         parsed->port[port_len] = '\0';
     } else {
-        strcpy(parsed->port, "80");
+        my_strcpy(parsed->port, "80");
     }
 }
 
@@ -102,10 +102,10 @@ void get_path(const char *path_start, url_t *parsed) {
     
     size_t path_len = ptr - path_begin;
     if (path_len > 0 && path_len < sizeof(parsed->path)) {
-        strncpy(parsed->path, path_begin, path_len);
+        my_strncpy(parsed->path, path_begin, path_len);
         parsed->path[path_len] = '\0';
     } else {
-        strcpy(parsed->path, "/");
+        my_strcpy(parsed->path, "/");
     }
 }
 
@@ -119,20 +119,20 @@ void get_query(const char *query_start, url_t *parsed) {
     
     size_t query_len = ptr - query_begin;
     if (query_len > 0 && query_len < sizeof(parsed->query)) {
-        strncpy(parsed->query, query_begin, query_len);
+        my_strncpy(parsed->query, query_begin, query_len);
         parsed->query[query_len] = '\0';
     } else {
-        strcpy(parsed->query, "");
+        my_strcpy(parsed->query, "");
     }
 }
 
 void get_fragment(const char *fragment_start, url_t *parsed) {
     const char *fragment_begin = fragment_start + 1; // Skip the '#'
     
-    size_t frag_len = strlen(fragment_begin);
+    size_t frag_len = my_strlen(fragment_begin);
     if (frag_len > 0 && frag_len < sizeof(parsed->fragment)) {
-        strcpy(parsed->fragment, fragment_begin);
+        my_strcpy(parsed->fragment, fragment_begin);
     } else {
-        strcpy(parsed->fragment, "");
+        my_strcpy(parsed->fragment, "");
     }
 }

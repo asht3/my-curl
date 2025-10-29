@@ -6,6 +6,7 @@ SRCS = src/main.c \
 	   src/url_parser.c \
 	   src/network_utils.c \
 	   src/http_client.c \
+	   src/utils.c \
 
 OBJ_DIR = obj
 OBJS = $(patsubst src/%.c, $(OBJ_DIR)/%.o, $(SRCS))

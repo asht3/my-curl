@@ -33,5 +33,9 @@ void receive_http_response(int sockfd);
 void print_response_body(const char *response);
 
 // Helper functions
+int my_strlen(const char* str_1);
+char* my_strstr(const char* haystack, const char* needle);
+char* my_strcpy(char* dest, const char* src);
+char* my_strncpy(char* str_1, const char* str_2, int length);
 
 #endif
