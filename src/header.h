@@ -39,5 +39,7 @@ int my_strlen(const char* str_1);
 char* my_strstr(const char* haystack, const char* needle);
 char* my_strcpy(char* dest, const char* src);
 char* my_strncpy(char* str_1, const char* str_2, int length);
+void *my_memset(void *ptr, int value, size_t num);
+int my_isxdigit(char c);
 
 #endif

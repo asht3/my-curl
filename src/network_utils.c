@@ -6,7 +6,7 @@ int create_connection(const char *host, const char *port) {
     struct addrinfo *result = NULL;
     struct addrinfo *rp = NULL;
     
-    memset(&hints, 0, sizeof(hints));
+    my_memset(&hints, 0, sizeof(hints));
     hints.ai_family = AF_INET;       // IPv4
     hints.ai_socktype = SOCK_STREAM; // TCP socket
     hints.ai_protocol = IPPROTO_TCP; // TCP protocol
@@ -31,11 +31,11 @@ int create_connection(const char *host, const char *port) {
         if (sockfd == -1) continue;
         
         if (connect(sockfd, rp->ai_addr, rp->ai_addrlen) != -1) {
-            write(STDOUT_FILENO, "SUCCESS: Connected to ", 22);
-            write(STDOUT_FILENO, ip_str, my_strlen(ip_str));
-            write(STDOUT_FILENO, ":", 1);
-            write(STDOUT_FILENO, port, my_strlen(port));
-            write(STDOUT_FILENO, "\n", 1);
+            // write(STDOUT_FILENO, "SUCCESS: Connected to ", 22);
+            // write(STDOUT_FILENO, ip_str, my_strlen(ip_str));
+            // write(STDOUT_FILENO, ":", 1);
+            // write(STDOUT_FILENO, port, my_strlen(port));
+            // write(STDOUT_FILENO, "\n", 1);
             break;
         }
         

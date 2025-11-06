@@ -54,3 +54,18 @@ char* my_strncpy(char* str_1, const char* str_2, int length) {
 
     return str_1;
 }
+
+void *my_memset(void *ptr, int value, size_t num) {
+    unsigned char *p = (unsigned char*)ptr;
+    unsigned char v = (unsigned char)value;
+    for (size_t i = 0; i < num; ++i) {
+        p[i] = v;
+    }
+    return ptr;
+}
+
+int my_isxdigit(char c) {
+    return (c >= '0' && c <= '9') || 
+           (c >= 'a' && c <= 'f') || 
+           (c >= 'A' && c <= 'F');
+}
