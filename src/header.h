@@ -29,13 +29,11 @@ void get_fragment(const char *url, url_t *parsed);
 
 // network_utils.c
 unsigned short my_htons(unsigned short hostshort);
-// uint32_t my_inet_addr(const char *ip_str);
 int create_connection(const char *host, const char *port);
 
 // http_client.c
 void send_http_request(int sockfd, const url_t *url);
 void receive_http_response(int sockfd);
-void print_response_body(const char *response);
 
 // Helper functions utils.c
 int my_strlen(const char* str_1);

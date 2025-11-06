@@ -1,40 +1,5 @@
 #include "header.h"
 
-// unsigned short my_htons(unsigned short hostshort) {
-//     return (hostshort << 8) | (hostshort >> 8);
-// }
-
-// uint32_t my_inet_addr(const char *ip_str) {
-//     uint32_t ip = 0;
-//     const char *p = ip_str;
-    
-//     for (int i = 0; i < 4; i++) {
-//         int octet = 0;
-        
-//         // Convert to int
-//         while (*p >= '0' && *p <= '9') {
-//             octet = octet * 10 + (*p - '0');
-//             p++;
-//         }
-        
-//         if (octet < 0 || octet > 255) {
-//             return 0; // Invalid IP
-//         }
-        
-//         ip = (ip << 8) | (octet & 0xFF);
-        
-//         // Skip the dot
-//         if (i < 3) {
-//             if (*p != '.') return 0;
-//             p++;
-//         }
-//     }
-    
-//     if (*p != '\0') return 0;
-    
-//     return ip;
-// }
-
 int create_connection(const char *host, const char *port) {
     int sockfd;
     struct addrinfo hints;
@@ -49,7 +14,10 @@ int create_connection(const char *host, const char *port) {
     // DNS LOOKUP
     int status = getaddrinfo(host, port, &hints, &result);
     if (status != 0) {
-        write(STDERR_FILENO, "DNS resolution failed: Site does not exist\n", 43);
+        // write(STDERR_FILENO, "DNS resolution failed: Site does not exist\n", 43);
+        write(STDERR_FILENO, "could not resolve host: ", 24);
+        write(STDERR_FILENO, host, my_strlen(host));
+        write(STDOUT_FILENO, "\n", 1);
         return -1;
     }
     
@@ -63,7 +31,11 @@ int create_connection(const char *host, const char *port) {
         if (sockfd == -1) continue;
         
         if (connect(sockfd, rp->ai_addr, rp->ai_addrlen) != -1) {
-            printf("SUCCESS: Connected to %s:%s\n", ip_str, port); // DEBUG
+            write(STDOUT_FILENO, "SUCCESS: Connected to ", 22);
+            write(STDOUT_FILENO, ip_str, my_strlen(ip_str));
+            write(STDOUT_FILENO, ":", 1);
+            write(STDOUT_FILENO, port, my_strlen(port));
+            write(STDOUT_FILENO, "\n", 1);
             break;
         }
         

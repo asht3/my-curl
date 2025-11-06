@@ -3,3 +3,6 @@ obj/
 
 # Executable
 my_curl
+
+# Gandalf test result
+gres.txt

@@ -51,11 +51,11 @@ int parse_url(const char *url, url_t *parsed) {
     }
 
     // DEBUG
-    printf("Host: %s\n", parsed->host);
-    printf("Port: %s\n", parsed->port);
-    printf("Path: %s\n", parsed->path);
-    printf("Query: %s\n", parsed->query);
-    printf("Fragment: %s\n", parsed->fragment);
+    // printf("Host: %s\n", parsed->host);
+    // printf("Port: %s\n", parsed->port);
+    // printf("Path: %s\n", parsed->path);
+    // printf("Query: %s\n", parsed->query);
+    // printf("Fragment: %s\n", parsed->fragment);
 
     return 0;
 }
