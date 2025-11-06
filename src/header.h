@@ -28,7 +28,6 @@ void get_query(const char *url, url_t *parsed);
 void get_fragment(const char *url, url_t *parsed);
 
 // network_utils.c
-unsigned short my_htons(unsigned short hostshort);
 int create_connection(const char *host, const char *port);
 
 // http_client.c
