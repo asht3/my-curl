@@ -3,11 +3,8 @@
 int parse_url(const char *url, url_t *parsed) {
     // Find the scheme separator
     char* scheme_end = my_strstr(url, "://");
-    // char scheme[10] = "http";
 
     if (scheme_end) {
-        // my_strncpy(scheme, url, scheme_end - url);
-        // scheme[scheme_end - url] = '\0';
         url += (scheme_end - url) + 3;
     }
 
@@ -15,8 +12,6 @@ int parse_url(const char *url, url_t *parsed) {
     
     // Parse host
     get_host(current_pos, parsed);
-    
-    // Update current position after host
     current_pos += my_strlen(parsed->host);
     
     // Parse port
@@ -49,13 +44,6 @@ int parse_url(const char *url, url_t *parsed) {
     } else {
         my_strcpy(parsed->fragment, "");
     }
-
-    // DEBUG
-    // printf("Host: %s\n", parsed->host);
-    // printf("Port: %s\n", parsed->port);
-    // printf("Path: %s\n", parsed->path);
-    // printf("Query: %s\n", parsed->query);
-    // printf("Fragment: %s\n", parsed->fragment);
 
     return 0;
 }

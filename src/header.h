@@ -8,8 +8,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <netdb.h> // getaddrinfo
-// #include <stdint.h>
+#include <netdb.h>
 
 typedef struct {
     char host[256];
@@ -34,7 +33,7 @@ int create_connection(const char *host, const char *port);
 void send_http_request(int sockfd, const url_t *url);
 void receive_http_response(int sockfd);
 
-// Helper functions utils.c
+// utils.c
 int my_strlen(const char* str_1);
 char* my_strstr(const char* haystack, const char* needle);
 char* my_strcpy(char* dest, const char* src);
