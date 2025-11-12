@@ -17,7 +17,7 @@ The HTTP/1.1 requests were constructed with the proper headers. Parsing was impl
 Clone the repo using `git clone` and move into the my_curl directory. From there, compile the code using `make`.
 
 ## Usage
-You can run hte code using the following command and format:
+You can run the code using the following command and format:
 ```
 ./my_curl <URL>
 ```
