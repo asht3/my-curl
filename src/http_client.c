@@ -27,18 +27,3 @@ void receive_http_response(int sockfd) {
         write(STDOUT_FILENO, buffer, bytes_read);
     }
 }
-
-void skip_hex(ssize_t bytes_read, char* buffer) {
-    for (ssize_t i = 0; i < bytes_read; i++) {
-        if (i == 0 || (i >= 2 && buffer[i-2] == '\r' && buffer[i-1] == '\n')) {
-            if (my_isxdigit(buffer[i])) {
-                while (i < bytes_read && !(buffer[i] == '\r' && i+1 < bytes_read && buffer[i+1] == '\n')) {
-                    i++;
-                }
-                if (i < bytes_read) i++;
-                continue;
-            }
-        }
-        write(STDOUT_FILENO, &buffer[i], 1);
-    }
-}
